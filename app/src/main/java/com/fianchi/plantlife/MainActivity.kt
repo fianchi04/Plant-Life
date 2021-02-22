@@ -24,4 +24,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
 
     }
+
+    fun savePlantToDb(view: View) {
+
+    }
 }
