@@ -53,7 +53,9 @@ class PlantDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABAS
         val selectAllQuery = "SELECT * FROM $TABLE_PLANT"
         val db = this.readableDatabase
         var cursor: Cursor? = null
-        kotlin.runCatching { cursor = db.rawQuery(selectAllQuery, null) }
+        kotlin.runCatching {
+            cursor = db.rawQuery(selectAllQuery, null)
+        }
                 .onFailure {
                     db.execSQL(selectAllQuery)
                     return ArrayList()
@@ -70,7 +72,20 @@ class PlantDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABAS
                 plantList.add(Plant(id, name, species))
             } while (cursor!!.moveToNext())
         }
+        cursor!!.close()
+        db.close()
         return plantList
+    }
+
+    fun deleteAllPlants() {
+//        this.writableDatabase.runCatching {
+//            this.execSQL( "DELETE FROM $TABLE_PLANT")
+//        }.onFailure { println("FAILED TO EXECUTE SQL") }
+//                .getOrThrow()
+        println("I'm here!")
+        val db = this.writableDatabase
+        db.delete(TABLE_PLANT, null, null)
+        db.close()
     }
 
 

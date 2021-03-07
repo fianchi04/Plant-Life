@@ -28,4 +28,9 @@ class MainActivity : AppCompatActivity() {
     fun savePlantToDb(view: View) {
 
     }
+
+    fun delete(view: View) {
+        val intent = Intent(this, DeleteAllPlantActivity::class.java)
+        startActivity(intent)
+    }
 }

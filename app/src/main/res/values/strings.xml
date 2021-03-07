@@ -2,4 +2,5 @@
     <string name="app_name">Plant Life</string>
     <string name="save_plant">Enter a plant name</string>
     <string name="button_save">Save</string>
+    <string name="delete_everything_button">Delete everything</string>
 </resources>
