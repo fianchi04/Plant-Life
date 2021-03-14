@@ -41,7 +41,7 @@ class PlantDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABAS
             this.put(KEY_ID, plant.id)
             this.put(KEY_NAME, plant.name)
             this.put(KEY_SPECIES, plant.species)
-            //this.put(KEY_CREATE_TS, Instant.now()) figure out timestamps later, can't do instant.now, what do
+            //todo: this.put(KEY_CREATE_TS, Instant.now()) figure out timestamps later, can't do instant.now, what do
         }
         val success = db.insert(TABLE_PLANT, null, contentValues)
         db.close()
@@ -78,11 +78,6 @@ class PlantDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABAS
     }
 
     fun deleteAllPlants() {
-//        this.writableDatabase.runCatching {
-//            this.execSQL( "DELETE FROM $TABLE_PLANT")
-//        }.onFailure { println("FAILED TO EXECUTE SQL") }
-//                .getOrThrow()
-        println("I'm here!")
         val db = this.writableDatabase
         db.delete(TABLE_PLANT, null, null)
         db.close()
