@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PlantLife">
+        <activity android:name=".AddPlantActivity"></activity>
+        <activity android:name=".SaveNewEventActivity" />
         <activity
             android:name=".SaveNewPlantActivity"
             android:parentActivityName=".MainActivity" />
@@ -22,6 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SelectPlantSpinnerActivity" />
     </application>
 
 </manifest>

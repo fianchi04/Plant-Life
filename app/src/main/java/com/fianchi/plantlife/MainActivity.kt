@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 
 
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
+    //deprecate
     fun saveNewPlant(view: View) {
         val savePlant = findViewById<EditText>(R.id.editTextTextPersonName)
         val message = savePlant.text.toString()
@@ -25,6 +27,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+
+    //add new plant
+    fun addNewPlant(view: View) {
+        val plant = findViewById<Button>(R.id.addNewPlantButton)
+        val intent = Intent(this, AddPlantActivity::class.java)
+        startActivity(intent)
+    }
     fun savePlantToDb(view: View) {
 
     }

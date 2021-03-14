@@ -3,4 +3,14 @@
     <string name="save_plant">Enter a plant name</string>
     <string name="button_save">Save</string>
     <string name="delete_everything_button">Delete everything</string>
+    <string name="selected_plant">Selected Plant</string>
+
+    <string name="add_new_plant">Add new plant</string>
+    <string name="selected_add_type">How did you get this plant?</string>
+    <string-array name="Add_Types">
+        <item>I bought it</item>
+        <item>I was given it</item>
+        <item>From another plant in collection</item>
+    </string-array>
+
 </resources>
