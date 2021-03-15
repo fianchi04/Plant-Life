@@ -6,5 +6,6 @@ import java.util.UUID
 data class Plant(
         val id: String,
         val name: String,
-        val species: String? = null
+        val species: String,
+        val origin: String
 )

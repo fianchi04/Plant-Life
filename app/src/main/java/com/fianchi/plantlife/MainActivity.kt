@@ -16,22 +16,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    //deprecate
-    fun saveNewPlant(view: View) {
-        val savePlant = findViewById<EditText>(R.id.editTextTextPersonName)
-        val message = savePlant.text.toString()
-        val intent = Intent(this, SaveNewPlantActivity::class.java).apply {
-            putExtra(NAME_NEW_PLANT, message)
-        }
-        startActivity(intent)
-
-    }
-
 
 
     //add new plant
     fun addNewPlant(view: View) {
-        val plant = findViewById<Button>(R.id.addNewPlantButton)
         val intent = Intent(this, AddPlantActivity::class.java)
         startActivity(intent)
     }

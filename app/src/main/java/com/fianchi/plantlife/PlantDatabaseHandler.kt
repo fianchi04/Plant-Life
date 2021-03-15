@@ -15,13 +15,14 @@ class PlantDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABAS
         private val KEY_ID = "ID"
         private val KEY_NAME = "NAME"
         private val KEY_SPECIES = "SPECIES"
+        private val KEY_ORIGIN = "ORIGIN"
         //private val KEY_CREATE_TS = "CREATED_TIMESTAMP"
         //private val KEY_UPDATE_TS = "UPDATED_TIMESTAMP"
     }
 
 
     override fun onCreate(db: SQLiteDatabase) {
-        val CREATE_PLANT_TABLE = "CREATE TABLE $TABLE_PLANT($KEY_ID TEXT PRIMARY KEY, $KEY_NAME TEXT, $KEY_SPECIES TEXT)" //, $KEY_CREATE_TS INSTANT, $KEY_UPDATE_TS INSTANT
+        val CREATE_PLANT_TABLE = "CREATE TABLE $TABLE_PLANT($KEY_ID TEXT PRIMARY KEY, $KEY_NAME TEXT, $KEY_SPECIES TEXT, $KEY_ORIGIN TEXT)"
         db.execSQL(CREATE_PLANT_TABLE)
 
 
@@ -41,7 +42,7 @@ class PlantDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABAS
             this.put(KEY_ID, plant.id)
             this.put(KEY_NAME, plant.name)
             this.put(KEY_SPECIES, plant.species)
-            //todo: this.put(KEY_CREATE_TS, Instant.now()) figure out timestamps later, can't do instant.now, what do
+            this.put(KEY_ORIGIN, plant.origin)
         }
         val success = db.insert(TABLE_PLANT, null, contentValues)
         db.close()
@@ -64,12 +65,14 @@ class PlantDatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABAS
         var id: String
         var name: String
         var species: String
+        var origin: String
         if(cursor!!.moveToFirst()) {
             do {
-                id = cursor!!.getString(cursor!!.getColumnIndex("ID"))
-                name = cursor!!.getString(cursor!!.getColumnIndex("NAME"))
-                species = cursor!!.getString(cursor!!.getColumnIndex("SPECIES"))
-                plantList.add(Plant(id, name, species))
+                id = cursor!!.getString(cursor!!.getColumnIndex(KEY_ID))
+                name = cursor!!.getString(cursor!!.getColumnIndex(KEY_NAME))
+                species = cursor!!.getString(cursor!!.getColumnIndex(KEY_SPECIES))
+                origin = cursor!!.getString(cursor!!.getColumnIndex(KEY_ORIGIN))
+                plantList.add(Plant(id, name, species, origin))
             } while (cursor!!.moveToNext())
         }
         cursor!!.close()

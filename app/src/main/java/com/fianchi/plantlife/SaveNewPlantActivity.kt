@@ -10,18 +10,21 @@ class SaveNewPlantActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_message)
 
-        // Get the Intent that started this activity and extract the string
-        val message = intent.getStringExtra(NAME_NEW_PLANT)
-
+        val name = intent.getStringExtra("plant_name")
         val plantDatabaseHandler: PlantDatabaseHandler = PlantDatabaseHandler(this)
-        val status = plantDatabaseHandler.addPlant(Plant(id = UUID.randomUUID().toString(), message!!, "UNKNOWN SPECIES"))
+        val status = plantDatabaseHandler.addPlant(Plant(
+            id = UUID.randomUUID().toString(),
+            name!!,
+            intent.getStringExtra("plant_species")!!,
+            intent.getStringExtra("plant_origin")!!
+        ))
 
         // Capture the layout's TextView and set the string as its text
         val textView = findViewById<TextView>(R.id.textView).apply {
             text =
-                    if (status.equals(-1)) "Failed to save $message to the db"
+                    if (status.equals(-1)) "Failed to save $name to the db"
                     else {
-                        """Saved $message to DB
+                        """Saved $name to DB
                     All DB entries:
                     ${plantDatabaseHandler.viewPlant().toString()}
                 """.trimMargin()
